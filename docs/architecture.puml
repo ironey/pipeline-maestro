@@ -1,0 +1,68 @@
+@startuml pipeline-maestro-architecture
+skinparam backgroundColor transparent
+
+cloud "Data Sources" as sources {
+    database "Databases" as db
+    queue "Message Queues" as queue
+    storage "Object Storage" as storage
+}
+
+rectangle "Pipeline Maestro" as maestro #LightBlue {
+    rectangle "Orchestration Engine" as engine {
+        rectangle "Workflow Manager" as workflow
+        rectangle "Task Scheduler" as scheduler
+        rectangle "Resource Manager" as resources
+    }
+
+    rectangle "Pipeline Components" as components #LightGreen {
+        rectangle "Task Templates" as templates
+        rectangle "Connectors" as connectors
+        rectangle "Transformers" as transformers
+    }
+
+    rectangle "Control Plane" as control #Pink {
+        rectangle "Version Control" as version
+        rectangle "Pipeline Registry" as registry
+        rectangle "Secret Manager" as secrets
+    }
+
+    rectangle "Monitoring" as monitor #Orange {
+        rectangle "Pipeline Metrics" as metrics
+        rectangle "SLA Tracker" as sla
+        rectangle "Cost Optimizer" as cost
+    }
+}
+
+cloud "Execution Environment" as exec {
+    rectangle "K8s Cluster" as k8s
+    rectangle "Serverless" as serverless
+    rectangle "VMs" as vms
+}
+
+sources --> components : Data Flow
+components --> exec : Execute
+engine --> components : Manage
+control --> engine : Configure
+monitor --> [*] : Report
+
+note right of engine
+  Smart orchestration with
+  ML-based optimization
+end note
+
+note right of components
+  Reusable pipeline
+  building blocks
+end note
+
+note right of control
+  Centralized pipeline
+  governance
+end note
+
+note right of monitor
+  Real-time pipeline
+  observability
+end note
+
+@enduml
