@@ -24,3 +24,5 @@ feat: Add security features
 feat: Optimize database queries
 // Updated: 2020-07-15T10:00:00
 feat: Add support for new data formats
+// Updated: 2020-08-15T10:00:00
+feat: Implement data compression
