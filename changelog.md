@@ -26,3 +26,5 @@ feat: Optimize database queries
 feat: Add support for new data formats
 // Updated: 2020-08-15T10:00:00
 feat: Implement data compression
+// Updated: 2020-09-15T10:00:00
+feat: Add backup system
